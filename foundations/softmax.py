@@ -1,10 +1,13 @@
 import numpy as np
 from numpy.typing import NDArray
 
+
 class Solution:
+
     def softmax(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
-        # my amplifier / sum of all amplifier
-        # e power 1 = 2.7
+        # z is a 1D NumPy array of logits
+        # Hint: subtract max(z) for numerical stability before computing exp
+        # return np.round(your_answer, 4)
         shifted = z - np.max(z)
-        exps = np.exp(shifted)
-        return np.round(exps/ np.sum(exps), 4)      
+        exp = np.exp(shifted)
+        return np.round(exp / np.sum(exp), 4)
