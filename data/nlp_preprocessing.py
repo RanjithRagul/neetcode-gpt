@@ -7,6 +7,8 @@ class Solution:
     def get_dataset(self, positive: List[str], negative: List[str]) -> TensorType[float]:
         combined = positive + negative
         vocabulary = sorted({word for sentence in combined for word in sentence.split()})
+
         word_to_id = {word: idx for idx, word in enumerate(vocabulary, 1)}
+
         encoded = [torch.tensor([word_to_id[w] for w in s.split()]) for s in combined]
         return nn.utils.rnn.pad_sequence(encoded, batch_first=True)
